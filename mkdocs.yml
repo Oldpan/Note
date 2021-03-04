@@ -1,3 +1,2 @@
-site_name: My Docs
-theme:
-  name: material
+site_name: 老潘
+theme: readthedocs
