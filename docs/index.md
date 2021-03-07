@@ -1,17 +1,17 @@
-# Welcome to MkDocs
+# 人工智能指北
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+**进击的人工智能**这个站点。
 
-## Commands
+是老潘**编写和收集**的有关AI的学习笔记及路线大全。不论是新手还是老鸟都会在这里找到想要的资料和知识。同时也欢迎大家`Pull requestions`自己觉着不错的资料和资源。
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+适用于
+- 想成为算法工程师的小伙伴
+- 想学习Pytorch、TensorRT的小伙伴
+- 想了解侧端模型部署以及服务器模型部署的小伙伴
+- 想了解AI有趣项目以及应用、探索内部原理的小伙伴
+- 想要面试前补一些知识的小伙伴
 
-## Project layout
+相比于「[oldpan博客](https://oldpan.me/)」，本站更倾向于整理和收集一些知识资料。
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+
+
