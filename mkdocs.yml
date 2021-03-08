@@ -1,3 +1,6 @@
 site_name: 进击的人工智能
+Pages:
+- [index.md, Home]
+- [about.md, About]
 theme:  
   name: material
