@@ -1,6 +1,9 @@
-# 人工智能指北
+# 欢迎来到深度学习的世界
 
-**进击的人工智能**这个站点。
+
+# 关于站点
+
+<font size=5 color=#A52A2A>进击的人工智能</font>这个站点。
 
 总结了有关AI的**学习笔记**及**路线大全**。不论是新手还是老鸟都会在这里找到想要的资料和知识。同时也欢迎大家`Pull requestions`自己觉着不错的资料和资源。
 
@@ -12,31 +15,33 @@
 - 想了解AI有趣项目以及应用、探索内部原理的小伙伴
 - 想要面试前补充一些知识的小伙伴
 
-相比于「[oldpan博客](https://oldpan.me/)」，本站更倾向于整理和收集一些<font color=#A52A2A size=4 >知识资料</font>。
+相比于「[oldpan博客](https://oldpan.me/)」，本站更倾向于整理和收集一些<font color=#A52A2A size=3 >知识资料</font>，开箱即看，所见即所得。
 
-<font color=#A52A2A size=4 >关键词</font>：
+<font size=4 >关键词</font>：
 
-- <font color=#A52A2A size=3 >AI、深度学习、人工智能</font>
-- <font color=#A52A2A size=3 >Pytorch、TensorRT、Openvino</font>。
-- <font color=#A52A2A size=3 >C++、Python、JS</font>
-- <font color=#A52A2A size=3 >ONNX、NCNN、TVM</font>
+- AI、深度学习、人工智能
+- Pytorch、TensorRT、Openvino
+- C++、Python、JS
+- ONNX、NCNN、TVM
+
+
+
+
+
+
+
 
 # 目录大纲
 
-更新ing。
-
-暂定为：
-
-- 人工智能需要的基础知识
-- 深度学习环境的配置
+- 理论基础知识预备
+- 深度学习环境配置
 - 模型训练与设计
 - 模型部署与调优
-- 需要的基础知识
 - 有意思且有深度的AI项目
-- ...
+- 提升效率的工具
 
 
-# 关于Oldpan
+# 最后的最后
 
 老潘，和你分享程序员眸中的fantasy life。
 
