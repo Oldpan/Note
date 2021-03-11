@@ -1,9 +1,9 @@
 site_name: 进击的人工智能
-Pages:
-- [index.md, Home]
-- [about.md, About]
 theme:  
   name: material
+  features:
+    - navigation.instant
+    - navigation.tabs
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js
   - javascripts/config.js
