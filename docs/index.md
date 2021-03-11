@@ -24,13 +24,6 @@
 - C++、Python、JS
 - ONNX、NCNN、TVM
 
-
-
-
-
-
-
-
 # 目录大纲
 
 - 理论基础知识预备
