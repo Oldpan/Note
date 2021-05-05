@@ -1,0 +1,1519 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
+    
+    
+      
+        <title>了解一哈gcc、clang、cmake、make - 进击的人工智能</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.e35208c4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="进击的人工智能" class="md-header__button md-logo" aria-label="进击的人工智能" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            进击的人工智能
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              了解一哈gcc、clang、cmake、make
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      主页
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../about/" class="md-tabs__link">
+      关于
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../%E5%85%A5%E9%97%A8/1%20%E8%AF%BE%E7%A8%8B%E5%85%A5%E9%97%A8/1%E3%80%81%E9%A6%96%E5%85%88%E7%9C%8B%E8%BF%99%E9%87%8C/" class="md-tabs__link">
+        入门
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../%E5%8E%BB%E4%BB%96%E7%9A%84%E5%B7%A5%E5%85%B7/Git/gitignore/" class="md-tabs__link">
+        去他的工具
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../%E5%90%90%E6%A7%BD%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%28%E5%BF%85%E7%9C%8B%29%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0CV%E4%BA%BA%E6%89%8D%E6%8A%A5%E5%91%8A/" class="md-tabs__link">
+        吐槽深度学习
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E4%B8%8E%E8%AE%BE%E8%AE%A1/%28%E4%B8%80%29%20%E6%95%B0%E6%8D%AE%E5%BE%88%E9%87%8D%E8%A6%81/" class="md-tabs__link">
+        模型训练与设计
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../OpenVino/%28%E4%B8%80%29%20%E4%BB%80%E4%B9%88%E6%98%AFOpenvino/" class="md-tabs__link md-tabs__link--active">
+        模型部署与调优
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C%2B%2B/C%2B%2B%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/" class="md-tabs__link">
+        编程语言
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../%E8%B5%B0%E8%BF%9BAI%E5%AE%9E%E9%AA%8C%E5%AE%A4/mediapipe/" class="md-tabs__link">
+        走进AI实验室
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="进击的人工智能" class="md-nav__button md-logo" aria-label="进击的人工智能" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    进击的人工智能
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        主页
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        关于
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        入门
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="入门" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          入门
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        1 课程入门
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="1 课程入门" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          1 课程入门
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%A5%E9%97%A8/1%20%E8%AF%BE%E7%A8%8B%E5%85%A5%E9%97%A8/1%E3%80%81%E9%A6%96%E5%85%88%E7%9C%8B%E8%BF%99%E9%87%8C/" class="md-nav__link">
+        1、首先看这里
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%A5%E9%97%A8/1%20%E8%AF%BE%E7%A8%8B%E5%85%A5%E9%97%A8/2%E3%80%81%E5%80%BC%E5%BE%97%E6%8E%A8%E8%8D%90%E7%9A%84%E8%AF%BE%E7%A8%8B/" class="md-nav__link">
+        2、值得推荐的课程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%A5%E9%97%A8/1%20%E8%AF%BE%E7%A8%8B%E5%85%A5%E9%97%A8/3%E3%80%81%E5%80%BC%E5%BE%97%E7%9C%8B%E7%9A%84%E4%B9%A6%E7%B1%8D/" class="md-nav__link">
+        3、值得看的书籍
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        2 环境配置
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="2 环境配置" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          2 环境配置
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%A5%E9%97%A8/2%20%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%BB%E6%9C%BA%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+        简单的环境配置(RTX3070+CUDA11.1+CUDNN+TensorRT)
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        去他的工具
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="去他的工具" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          去他的工具
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      <label class="md-nav__link" for="__nav_4_1">
+        Git
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Git" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Git
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8E%BB%E4%BB%96%E7%9A%84%E5%B7%A5%E5%85%B7/Git/gitignore/" class="md-nav__link">
+        Gitignore
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        VScode
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="VScode" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          VScode
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8E%BB%E4%BB%96%E7%9A%84%E5%B7%A5%E5%85%B7/VScode/VScode-%E8%B0%83%E8%AF%95%E6%95%99%E7%A8%8B%281%29/" class="md-nav__link">
+        VScode 调试教程(1)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%8E%BB%E4%BB%96%E7%9A%84%E5%B7%A5%E5%85%B7/VScode/VScode-%E8%B0%83%E8%AF%95%E6%95%99%E7%A8%8B%282%29/" class="md-nav__link">
+        VScode 调试教程(2)
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        吐槽深度学习
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="吐槽深度学习" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          吐槽深度学习
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%90%E6%A7%BD%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%28%E5%BF%85%E7%9C%8B%29%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0CV%E4%BA%BA%E6%89%8D%E6%8A%A5%E5%91%8A/" class="md-nav__link">
+        (必看)深度学习CV人才报告
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%90%E6%A7%BD%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E8%81%8A%E4%B8%80%E8%81%8A%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E4%BB%A5%E5%8F%8A%E9%9D%A2%E7%BB%8F/" class="md-nav__link">
+        聊一聊算法工程师以及面经
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        模型训练与设计
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="模型训练与设计" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          模型训练与设计
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E4%B8%8E%E8%AE%BE%E8%AE%A1/%28%E4%B8%80%29%20%E6%95%B0%E6%8D%AE%E5%BE%88%E9%87%8D%E8%A6%81/" class="md-nav__link">
+        (一) 数据很重要
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+      
+      <label class="md-nav__link" for="__nav_6_2">
+        Pytorch
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Pytorch" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Pytorch
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E4%B8%8E%E8%AE%BE%E8%AE%A1/Pytorch/Pytorch%E6%BA%90%E7%A0%81%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        Pytorch源码结构
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      <label class="md-nav__link" for="__nav_7">
+        模型部署与调优
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="模型部署与调优" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          模型部署与调优
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      <label class="md-nav__link" for="__nav_7_1">
+        OpenVino
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="OpenVino" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          OpenVino
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../OpenVino/%28%E4%B8%80%29%20%E4%BB%80%E4%B9%88%E6%98%AFOpenvino/" class="md-nav__link">
+        (一) 什么是Openvino
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_2" type="checkbox" id="__nav_7_2" >
+      
+      <label class="md-nav__link" for="__nav_7_2">
+        TensorRT
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="TensorRT" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          TensorRT
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TensorRT/%28%E4%B8%80%29%20%E4%BB%80%E4%B9%88%E6%98%AFTensorRT%EF%BC%9F/" class="md-nav__link">
+        (一) 什么是TensorRT？
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TensorRT/%28%E4%BA%8C%29%20%E8%B7%91%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84demo/" class="md-nav__link">
+        (二) 跑一个简单的demo
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_3" type="checkbox" id="__nav_7_3" >
+      
+      <label class="md-nav__link" for="__nav_7_3">
+        Libtorch
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Libtorch" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_3">
+          <span class="md-nav__icon md-icon"></span>
+          Libtorch
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../libtorch/%28%E4%B8%80%29%20%E4%BB%80%E4%B9%88%E6%98%AFlibtorch/" class="md-nav__link">
+        (一) 什么是libtorch
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_4" type="checkbox" id="__nav_7_4" checked>
+      
+      <label class="md-nav__link" for="__nav_7_4">
+        基础知识
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="基础知识" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_4">
+          <span class="md-nav__icon md-icon"></span>
+          基础知识
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        了解一哈gcc、clang、cmake、make
+      </a>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%B5%85%E6%9E%90%E5%8A%A8%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93/" class="md-nav__link">
+        前言
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        编程语言
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="编程语言" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          编程语言
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" >
+      
+      <label class="md-nav__link" for="__nav_8_1">
+        C++
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="C++" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          C++
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C%2B%2B/C%2B%2B%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/" class="md-nav__link">
+        C++资源汇总
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_2" type="checkbox" id="__nav_8_2" >
+      
+      <label class="md-nav__link" for="__nav_8_2">
+        Python
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Python" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/Python%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/" class="md-nav__link">
+        Python资源汇总
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_2_2" type="checkbox" id="__nav_8_2_2" >
+      
+      <label class="md-nav__link" for="__nav_8_2_2">
+        老潘总结的Python
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="老潘总结的Python" data-md-level="3">
+        <label class="md-nav__title" for="__nav_8_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          老潘总结的Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E8%80%81%E6%BD%98%E6%80%BB%E7%BB%93%E7%9A%84Python/Python%E4%B8%AD%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="md-nav__link">
+        Python中异常处理
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      <label class="md-nav__link" for="__nav_9">
+        走进AI实验室
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="走进AI实验室" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          走进AI实验室
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%B5%B0%E8%BF%9BAI%E5%AE%9E%E9%AA%8C%E5%AE%A4/mediapipe/" class="md-nav__link">
+        Mediapipe
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_2" type="checkbox" id="__nav_9_2" >
+      
+      <label class="md-nav__link" for="__nav_9_2">
+        创意AI小玩意
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="创意AI小玩意" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_2">
+          <span class="md-nav__icon md-icon"></span>
+          创意AI小玩意
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%B5%B0%E8%BF%9BAI%E5%AE%9E%E9%AA%8C%E5%AE%A4/%E5%88%9B%E6%84%8FAI%E5%B0%8F%E7%8E%A9%E6%84%8F/DAIN/" class="md-nav__link">
+        DAIN
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%B5%B0%E8%BF%9BAI%E5%AE%9E%E9%AA%8C%E5%AE%A4/%E5%88%9B%E6%84%8FAI%E5%B0%8F%E7%8E%A9%E6%84%8F/style_gan/" class="md-nav__link">
+        Style gan
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <blockquote>
+<p>来源：https://linux.cn/article-13203-1.html
+作者：Seth Kenlon
+译者：Xingyu.Wang</p>
+</blockquote>
+<p>GNU 调试器常以它的命令 gdb 称呼它，它是一个交互式的控制台，可以帮助你浏览源代码、分析执行的内容，其本质上是对错误的应用程序中出现的问题进行逆向工程。</p>
+<p>故障排除的麻烦在于它很复杂。GNU 调试器 并不是一个特别复杂的应用程序，但如果你不知道从哪里开始，甚至不知道何时和为何你可能需要求助于 GDB 来进行故障排除，那么它可能会让人不知所措。如果你一直使用 print、echo 或 printf 语句来调试你的代码，当你开始思考是不是还有更强大的东西时，那么本教程就是为你准备的。</p>
+<h1 id="_1">有错误的代码</h1>
+<p>要开始使用 GDB，你需要一些代码。这里有一个用 C++ 写的示例应用程序（如果你一般不使用 C++ 编写程序也没关系，在所有语言中原理都是一样的），其来源于 猜谜游戏系列 中的一个例子。</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;stdlib.h&gt; //srand
+#include &lt;stdio.h&gt;  //printf
+
+using namespace std;
+
+int main () {
+
+srand (time(NULL));
+int alpha = rand() % 8;
+cout &lt;&lt; &quot;Hello world.&quot; &lt;&lt; endl;
+int beta = 2;
+
+printf(&quot;alpha is set to is %s\n&quot;, alpha);
+printf(&quot;kiwi is set to is %s\n&quot;, beta);
+
+ return 0;
+} // main
+</code></pre>
+<p>这个代码示例中有一个 bug，但它确实可以编译（至少在 GCC 5 的时候）。如果你熟悉 C++，你可能已经看到了，但这是一个简单的问题，可以帮助新的 GDB 用户了解调试过程。编译并运行它就可以看到错误：</p>
+<pre><code>$ g++ -o buggy example.cpp
+$ ./buggy
+Hello world.
+Segmentation fault
+</code></pre>
+<h1 id="_2">排除段故障</h1>
+<p>从这个输出中，你可以推测变量 alpha 的设置是正确的，因为否则的话，你就不会看到它后面的那行代码执行。当然，这并不总是正确的，但这是一个很好的工作理论，如果你使用 printf 作为日志和调试器，基本上也会得出同样的结论。从这里，你可以假设 bug 在于成功打印的那一行之后的某行。然而，不清楚错误是在下一行还是在几行之后。</p>
+<p>GNU 调试器是一个交互式的故障排除工具，所以你可以使用 gdb 命令来运行错误的代码。为了得到更好的结果，你应该从包含有调试符号的源代码中重新编译你的错误应用程序。首先，看看 GDB 在不重新编译的情况下能提供哪些信息：</p>
+<pre><code class="language-bash">$ gdb ./buggy
+Reading symbols from ./buggy...done.
+(gdb) start
+Temporary breakpoint 1 at 0x400a44
+Starting program: /home/seth/demo/buggy
+
+Temporary break
+point 1, 0x0000000000400a44 in main ()
+(gdb)
+</code></pre>
+<p>当你以一个二进制可执行文件作为参数启动 GDB 时，GDB 会加载该应用程序，然后等待你的指令。因为这是你第一次在这个可执行文件上运行 GDB，所以尝试重复这个错误是有意义的，希望 GDB 能够提供进一步的见解。很直观，GDB 用来启动它所加载的应用程序的命令就是 start。默认情况下，GDB 内置了一个断点，所以当它遇到你的应用程序的 main 函数时，它会暂停执行。要让 GDB 继续执行，使用命令 continue：</p>
+<pre><code class="language-bash">(gdb) continue
+Continuing.
+Hello world.
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff71c0c0b in vfprintf () from /lib64/libc.so.6
+(gdb)
+</code></pre>
+<p>毫不意外：应用程序在打印 “Hello world” 后不久就崩溃了，但 GDB 可以提供崩溃发生时正在发生的函数调用。这有可能就足够你找到导致崩溃的 bug，但为了更好地了解 GDB 的功能和一般的调试过程，想象一下，如果问题还没有变得清晰，你想更深入地挖掘这段代码发生了什么。</p>
+<h1 id="_3">用调试符号编译代码</h1>
+<p>要充分利用 GDB，你需要将调试符号编译到你的可执行文件中。你可以用 GCC 中的 -g 选项来生成这个符号：</p>
+<pre><code class="language-bash">$ g++ -o debuggy example.cpp
+$ ./debuggy
+Hello world.
+Segmentation fault
+</code></pre>
+<p>将调试符号编译到可执行文件中的结果是得到一个大得多的文件，所以通常不会分发它们，以增加便利性。然而，如果你正在调试开源代码，那么用调试符号重新编译测试是有意义的：</p>
+<pre><code class="language-bash">$ ls -l *buggy* *cpp
+-rw-r--r--    310 Feb 19 08:30 debug.cpp
+-rwxr-xr-x  11624 Feb 19 10:27 buggy*
+-rwxr-xr-x  22952 Feb 19 10:53 debuggy*
+</code></pre>
+<h1 id="gdb">用 GDB 调试</h1>
+<p>加载新的可执行文件（本例中为 debuggy）以启动 GDB：</p>
+<pre><code class="language-bash">$ gdb ./debuggy
+Reading symbols from ./debuggy...done.
+(gdb) start
+Temporary breakpoint 1 at 0x400a44
+Starting program: /home/seth/demo/debuggy
+
+Temporary breakpoint 1, 0x0000000000400a44 in main ()
+(gdb)
+</code></pre>
+<p>如前所述，使用 start 命令进行：</p>
+<pre><code class="language-bash">(gdb) start
+Temporary breakpoint 1 at 0x400a48: file debug.cpp, line 9.
+Starting program: /home/sek/demo/debuggy
+
+Temporary breakpoint 1, main () at debug.cpp:9
+9       srand (time(NULL));
+(gdb)
+</code></pre>
+<p>这一次，自动的 main 断点可以指明 GDB 暂停的行号和该行包含的代码。你可以用 continue 恢复正常操作，但你已经知道应用程序在完成之前就会崩溃，因此，你可以使用 next 关键字逐行步进检查你的代码：</p>
+<pre><code class="language-bash">(gdb) next
+10  int alpha = rand() % 8;
+(gdb) next
+11  cout &lt;&lt; &quot;Hello world.&quot; &lt;&lt; endl;
+(gdb) next
+Hello world.
+12  int beta = 2;
+(gdb) next
+14      printf(&quot;alpha is set to is %s\n&quot;, alpha);
+(gdb) next
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff71c0c0b in vfprintf () from /lib64/libc.so.6
+(gdb)
+</code></pre>
+<p>从这个过程可以确认，崩溃不是发生在设置 beta 变量的时候，而是执行 printf 行的时候。这个 bug 在本文中已经暴露了好几次（破坏者：向 printf 提供了错误的数据类型），但暂时假设解决方案仍然不明确，需要进一步调查。</p>
+<h1 id="_4">设置断点</h1>
+<p>一旦你的代码被加载到 GDB 中，你就可以向 GDB 询问到目前为止代码所产生的数据。要尝试数据自省，通过再次发出 start 命令来重新启动你的应用程序，然后进行到第 11 行。一个快速到达 11 行的简单方法是设置一个寻找特定行号的断点：</p>
+<pre><code class="language-bash">(gdb) start
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Temporary breakpoint 2 at 0x400a48: file debug.cpp, line 9.
+Starting program: /home/sek/demo/debuggy
+
+Temporary breakpoint 2, main () at debug.cpp:9
+9       srand (time(NULL));
+(gdb) break 11
+Breakpoint 3 at 0x400a74: file debug.cpp, line 11.
+</code></pre>
+<p>建立断点后，用 continue 继续执行：</p>
+<pre><code class="language-bash">(gdb) continue
+Continuing.
+
+Breakpoint 3, main () at debug.cpp:11
+11      cout &lt;&lt; &quot;Hello world.&quot; &lt;&lt; endl;
+(gdb)
+</code></pre>
+<p>现在暂停在第 11 行，就在 alpha 变量被设置之后，以及 beta 被设置之前。</p>
+<h1 id="gdb_1">用 GDB 进行变量自省</h1>
+<p>要查看一个变量的值，使用 print 命令。在这个示例代码中，alpha 的值是随机的，所以你的实际结果可能与我的不同：</p>
+<pre><code>(gdb) print alpha
+$1 = 3
+(gdb)
+</code></pre>
+<p>当然，你无法看到一个尚未建立的变量的值：</p>
+<h1 id="_5">使用流程控制</h1>
+<p>要继续进行，你可以步进代码行来到达将 beta 设置为一个值的位置：</p>
+<pre><code class="language-bash">(gdb) next
+Hello world.
+12  int beta = 2;
+(gdb) next
+14  printf(&quot;alpha is set to is %s\n&quot;, alpha);
+(gdb) print beta
+$3 = 2
+</code></pre>
+<p>另外，你也可以设置一个观察点，它就像断点一样，是一种控制 GDB 执行代码流程的方法。在这种情况下，你知道 beta 变量应该设置为 2，所以你可以设置一个观察点，当 beta 的值发生变化时提醒你：</p>
+<pre><code class="language-bash">(gdb) watch beta &gt; 0
+Hardware watchpoint 5: beta &gt; 0
+(gdb) continue
+Continuing.
+
+Breakpoint 3, main () at debug.cpp:11
+11      cout &lt;&lt; &quot;Hello world.&quot; &lt;&lt; endl;
+(gdb) continue
+Continuing.
+Hello world.
+
+Hardware watchpoint 5: beta &gt; 0
+
+Old value = false
+New value = true
+main () at debug.cpp:14
+14      printf(&quot;alpha is set to is %s\n&quot;, alpha);
+(gdb)
+</code></pre>
+<p>你可以用 next 手动步进完成代码的执行，或者你可以用断点、观察点和捕捉点来控制代码的执行。</p>
+<h1 id="gdb_2">用GDB分析数据</h1>
+<p>你可以以不同格式查看数据。例如，以八进制值查看 beta 的值：</p>
+<pre><code class="language-bash">(gdb) print /o beta
+$4 = 02
+</code></pre>
+<p>要查看其在内存中的地址：</p>
+<pre><code class="language-bash">(gdb) print /o beta
+$5 = 0x2
+</code></pre>
+<p>你也可以看到一个变量的数据类型：</p>
+<pre><code class="language-bash">(gdb) whatis beta
+type = int
+</code></pre>
+<h1 id="gdb_3">用 GDB 解决错误</h1>
+<p>这种自省不仅能让你更好地了解什么代码正在执行，还能让你了解它是如何执行的。在这个例子中，对变量运行的 whatis 命令给了你一个线索，即你的 alpha 和 beta 变量是整数，这可能会唤起你对 printf 语法的记忆，使你意识到在你的 printf 语句中，你必须使用 %d 来代替 %s。做了这个改变，就可以让应用程序按预期运行，没有更明显的错误存在。</p>
+<p>当代码编译后发现有 bug 存在时，特别令人沮丧，但最棘手的 bug 就是这样，如果它们很容易被发现，那它们就不是 bug 了。使用 GDB 是猎取并消除它们的一种方法。</p>
+<p>生活的真相就是这样，即使是最基本的编程，代码也会有 bug。并不是所有的错误都会导致应用程序无法运行（甚至无法编译），也不是所有的错误都是由错误的代码引起的。有时，bug 是基于一个特别有创意的用户所做的意外的选择组合而间歇性发生的。有时，程序员从他们自己的代码中使用的库中继承了 bug。无论原因是什么，bug 基本上无处不在，程序员的工作就是发现并消除它们。</p>
+<p>GNU 调试器是一个寻找 bug 的有用工具。你可以用它做的事情比我在本文中演示的要多得多。你可以通过 GNU Info 阅读器来了解它的许多功能：</p>
+<p>无论你是刚开始学习 GDB 还是专业人员的，提醒一下你有哪些命令是可用的，以及这些命令的语法是什么，都是很有帮助的。</p>
+<p>下载 GDB 速查表</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../../libtorch/%28%E4%B8%80%29%20%E4%BB%80%E4%B9%88%E6%98%AFlibtorch/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              (一) 什么是libtorch
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../%E6%B5%85%E6%9E%90%E5%8A%A8%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              前言
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+      
+        <script src="../../../javascripts/config.js"></script>
+      
+    
+  </body>
+</html>

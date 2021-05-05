@@ -1,0 +1,1824 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
+    
+    
+      
+        <title>聊一聊算法工程师以及面经 - 进击的人工智能</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e35208c4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="进击的人工智能" class="md-header__button md-logo" aria-label="进击的人工智能" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            进击的人工智能
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              聊一聊算法工程师以及面经
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      主页
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../about/" class="md-tabs__link">
+      关于
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E5%85%A5%E9%97%A8/1%20%E8%AF%BE%E7%A8%8B%E5%85%A5%E9%97%A8/1%E3%80%81%E9%A6%96%E5%85%88%E7%9C%8B%E8%BF%99%E9%87%8C/" class="md-tabs__link">
+        入门
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E5%8E%BB%E4%BB%96%E7%9A%84%E5%B7%A5%E5%85%B7/Git/gitignore/" class="md-tabs__link">
+        去他的工具
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%28%E5%BF%85%E7%9C%8B%29%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0CV%E4%BA%BA%E6%89%8D%E6%8A%A5%E5%91%8A/" class="md-tabs__link md-tabs__link--active">
+        吐槽深度学习
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E4%B8%8E%E8%AE%BE%E8%AE%A1/%28%E4%B8%80%29%20%E6%95%B0%E6%8D%AE%E5%BE%88%E9%87%8D%E8%A6%81/" class="md-tabs__link">
+        模型训练与设计
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%B0%83%E4%BC%98/OpenVino/%28%E4%B8%80%29%20%E4%BB%80%E4%B9%88%E6%98%AFOpenvino/" class="md-tabs__link">
+        模型部署与调优
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C%2B%2B/C%2B%2B%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/" class="md-tabs__link">
+        编程语言
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E8%B5%B0%E8%BF%9BAI%E5%AE%9E%E9%AA%8C%E5%AE%A4/mediapipe/" class="md-tabs__link">
+        走进AI实验室
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="进击的人工智能" class="md-nav__button md-logo" aria-label="进击的人工智能" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    进击的人工智能
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        主页
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        关于
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        入门
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="入门" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          入门
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        1 课程入门
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="1 课程入门" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          1 课程入门
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%A5%E9%97%A8/1%20%E8%AF%BE%E7%A8%8B%E5%85%A5%E9%97%A8/1%E3%80%81%E9%A6%96%E5%85%88%E7%9C%8B%E8%BF%99%E9%87%8C/" class="md-nav__link">
+        1、首先看这里
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%A5%E9%97%A8/1%20%E8%AF%BE%E7%A8%8B%E5%85%A5%E9%97%A8/2%E3%80%81%E5%80%BC%E5%BE%97%E6%8E%A8%E8%8D%90%E7%9A%84%E8%AF%BE%E7%A8%8B/" class="md-nav__link">
+        2、值得推荐的课程
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%A5%E9%97%A8/1%20%E8%AF%BE%E7%A8%8B%E5%85%A5%E9%97%A8/3%E3%80%81%E5%80%BC%E5%BE%97%E7%9C%8B%E7%9A%84%E4%B9%A6%E7%B1%8D/" class="md-nav__link">
+        3、值得看的书籍
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        2 环境配置
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="2 环境配置" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          2 环境配置
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%A5%E9%97%A8/2%20%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%BB%E6%9C%BA%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+        简单的环境配置(RTX3070+CUDA11.1+CUDNN+TensorRT)
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        去他的工具
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="去他的工具" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          去他的工具
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      <label class="md-nav__link" for="__nav_4_1">
+        Git
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Git" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Git
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8E%BB%E4%BB%96%E7%9A%84%E5%B7%A5%E5%85%B7/Git/gitignore/" class="md-nav__link">
+        Gitignore
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        VScode
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="VScode" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          VScode
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8E%BB%E4%BB%96%E7%9A%84%E5%B7%A5%E5%85%B7/VScode/VScode-%E8%B0%83%E8%AF%95%E6%95%99%E7%A8%8B%281%29/" class="md-nav__link">
+        VScode 调试教程(1)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8E%BB%E4%BB%96%E7%9A%84%E5%B7%A5%E5%85%B7/VScode/VScode-%E8%B0%83%E8%AF%95%E6%95%99%E7%A8%8B%282%29/" class="md-nav__link">
+        VScode 调试教程(2)
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      <label class="md-nav__link" for="__nav_5">
+        吐槽深度学习
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="吐槽深度学习" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          吐槽深度学习
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%28%E5%BF%85%E7%9C%8B%29%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0CV%E4%BA%BA%E6%89%8D%E6%8A%A5%E5%91%8A/" class="md-nav__link">
+        (必看)深度学习CV人才报告
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          聊一聊算法工程师以及面经
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        聊一聊算法工程师以及面经
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    去年的情况
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    今年的情况
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        模型训练与设计
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="模型训练与设计" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          模型训练与设计
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E4%B8%8E%E8%AE%BE%E8%AE%A1/%28%E4%B8%80%29%20%E6%95%B0%E6%8D%AE%E5%BE%88%E9%87%8D%E8%A6%81/" class="md-nav__link">
+        (一) 数据很重要
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+      
+      <label class="md-nav__link" for="__nav_6_2">
+        Pytorch
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Pytorch" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Pytorch
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E4%B8%8E%E8%AE%BE%E8%AE%A1/Pytorch/Pytorch%E6%BA%90%E7%A0%81%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        Pytorch源码结构
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        模型部署与调优
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="模型部署与调优" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          模型部署与调优
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      <label class="md-nav__link" for="__nav_7_1">
+        OpenVino
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="OpenVino" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          OpenVino
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%B0%83%E4%BC%98/OpenVino/%28%E4%B8%80%29%20%E4%BB%80%E4%B9%88%E6%98%AFOpenvino/" class="md-nav__link">
+        (一) 什么是Openvino
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_2" type="checkbox" id="__nav_7_2" >
+      
+      <label class="md-nav__link" for="__nav_7_2">
+        TensorRT
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="TensorRT" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          TensorRT
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%B0%83%E4%BC%98/TensorRT/%28%E4%B8%80%29%20%E4%BB%80%E4%B9%88%E6%98%AFTensorRT%EF%BC%9F/" class="md-nav__link">
+        (一) 什么是TensorRT？
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%B0%83%E4%BC%98/TensorRT/%28%E4%BA%8C%29%20%E8%B7%91%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84demo/" class="md-nav__link">
+        (二) 跑一个简单的demo
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_3" type="checkbox" id="__nav_7_3" >
+      
+      <label class="md-nav__link" for="__nav_7_3">
+        Libtorch
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Libtorch" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_3">
+          <span class="md-nav__icon md-icon"></span>
+          Libtorch
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%B0%83%E4%BC%98/libtorch/%28%E4%B8%80%29%20%E4%BB%80%E4%B9%88%E6%98%AFlibtorch/" class="md-nav__link">
+        (一) 什么是libtorch
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_4" type="checkbox" id="__nav_7_4" >
+      
+      <label class="md-nav__link" for="__nav_7_4">
+        基础知识
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="基础知识" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_4">
+          <span class="md-nav__icon md-icon"></span>
+          基础知识
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%B0%83%E4%BC%98/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%86%E8%A7%A3%E4%B8%80%E5%93%88gcc%E3%80%81clang%E3%80%81cmake%E3%80%81make/" class="md-nav__link">
+        了解一哈gcc、clang、cmake、make
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%B0%83%E4%BC%98/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%B5%85%E6%9E%90%E5%8A%A8%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93/" class="md-nav__link">
+        前言
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        编程语言
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="编程语言" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          编程语言
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" >
+      
+      <label class="md-nav__link" for="__nav_8_1">
+        C++
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="C++" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          C++
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C%2B%2B/C%2B%2B%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/" class="md-nav__link">
+        C++资源汇总
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_2" type="checkbox" id="__nav_8_2" >
+      
+      <label class="md-nav__link" for="__nav_8_2">
+        Python
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Python" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/Python%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/" class="md-nav__link">
+        Python资源汇总
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_2_2" type="checkbox" id="__nav_8_2_2" >
+      
+      <label class="md-nav__link" for="__nav_8_2_2">
+        老潘总结的Python
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="老潘总结的Python" data-md-level="3">
+        <label class="md-nav__title" for="__nav_8_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          老潘总结的Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/%E8%80%81%E6%BD%98%E6%80%BB%E7%BB%93%E7%9A%84Python/Python%E4%B8%AD%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="md-nav__link">
+        Python中异常处理
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      <label class="md-nav__link" for="__nav_9">
+        走进AI实验室
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="走进AI实验室" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          走进AI实验室
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%B5%B0%E8%BF%9BAI%E5%AE%9E%E9%AA%8C%E5%AE%A4/mediapipe/" class="md-nav__link">
+        Mediapipe
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_2" type="checkbox" id="__nav_9_2" >
+      
+      <label class="md-nav__link" for="__nav_9_2">
+        创意AI小玩意
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="创意AI小玩意" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_2">
+          <span class="md-nav__icon md-icon"></span>
+          创意AI小玩意
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%B5%B0%E8%BF%9BAI%E5%AE%9E%E9%AA%8C%E5%AE%A4/%E5%88%9B%E6%84%8FAI%E5%B0%8F%E7%8E%A9%E6%84%8F/DAIN/" class="md-nav__link">
+        DAIN
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%B5%B0%E8%BF%9BAI%E5%AE%9E%E9%AA%8C%E5%AE%A4/%E5%88%9B%E6%84%8FAI%E5%B0%8F%E7%8E%A9%E6%84%8F/style_gan/" class="md-nav__link">
+        Style gan
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    去年的情况
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    今年的情况
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <p>又到招聘季，聊一聊算法工程师以及面经</p>
+<p>偶然间看到了牛客的一个帖子，突然想起来，好像快要<strong>秋招</strong>了。</p>
+<p>每年的<strong>秋招</strong>一般都是<strong>8、9月份</strong>正式开始，而6月份部分大厂会开始招聘(说你呢说你的，Vivo)。</p>
+<p>现在是3月份，刚刚开学不久，老潘友情提醒下哈，研二或者本科准备找工作的，现在可以开始准备秋招啦。</p>
+<p><img alt="你懂得" src="https://image.oldpan.me/%E4%BD%A0%E6%87%82%E5%BE%97.jpg" /></p>
+<h1 id="_1">聊一聊今年的算法岗</h1>
+<p>既然聊起了秋招，当然也要简单说说今年的算法岗。</p>
+<p>老潘作为算法工程师，已经工作差不多快一年了，听说了<strong>神仙打架</strong>的2018年秋招，经历了<strong>诸神黄昏</strong>的2019年秋招，据说2020年(去年)是<strong>灰飞烟灭</strong>，那今年又是什么样呢？</p>
+<p>哎，这个真不好说。有关算法岗的言论现在太多啦，知乎上关于算法、AI以及图像、nlp找工作相关的话题一直很多！唱好的唱衰的都有，但大部分是唱衰的。</p>
+<p>总之不得不说一句，<strong>算法岗真难</strong>！</p>
+<p><img alt="去你妈的好气哦" src="https://image.oldpan.me/%E5%8E%BB%E4%BD%A0%E5%A6%88%E7%9A%84%E5%A5%BD%E6%B0%94%E5%93%A6.jpg?imageView2/1/w/200/h/200" /></p>
+<p>话说回来，老潘觉着今年的情况<strong>应该是依旧激烈</strong>，但是相比前两年巨大的投递量应该是好很多，但是为什么还不容易呢？</p>
+<p>感觉主要有几点：</p>
+<ul>
+<li>第一，找深度学习相关工作的人依然不少，虽然这些年一直在劝退(实验室师弟们去年找工作很少有找AI岗位的了)，但肯定还是不少坚定不移、真正热爱这个岗位的童鞋</li>
+<li>第二，大部分公司对于深度学习这个岗位已经参的够够的了，不再是简单问问CNN的结构概念就应付了事，而是结合实际任务来问，CV的NLP的。说白了就是看你来了能不能直接干活，给公司产出，大部分公司的CV从业者类似于开发，有需求有迭代，只有你能完成任务，技术栈满足要求，才会要你</li>
+<li>第三，呃呃，疫情因素也是有一些的</li>
+</ul>
+<p>更具体的，大厂对AI从业者的要求，可以看看老潘之前分析这篇文章：</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=Mzg3ODU2MzY5MA==&amp;mid=2247486315&amp;idx=1&amp;sn=a883d3dc0b2d6cda6cacb8d2889ece94&amp;chksm=cf10936ef8671a78b618ccd8ae182b372028edf1da3b35bdd7b0e18aeeba0bb7ea74541841a9&amp;token=1922154866&amp;lang=zh_CN#rd">CVer想知道的都在这里了，一起分析下《中国计算机视觉人才调研报告》吧！</a></li>
+</ul>
+<h2 id="_2">去年的情况</h2>
+<p>2019年，老潘找工作的情况是这样的：</p>
+<ul>
+<li>
+<p>算法报的人非常的多，hc也相对少，怎么感觉出来的呢？第一点，你去现场面试，其他的岗位(比如客户端！！！)，排一会队就论上你了。但假如你是深度学习算法，那么不好意思，先排个两个小时队伍再来面试吧；第二点，hc也相对较少，因为一般大小公司的算法团队可能也就几十人，校招期间可能也就会招10来人左右，大厂可能30左右，加上大家一拥而上，很容易就招满了。例如你在宣讲会听有现场笔试的企业，其他岗位都有，就你的CV深度学习算法岗招满了。</p>
+</li>
+<li>
+<p>第二就是真正想要符合深度学习算法工程师这个职位，要求还是不低的，必须要有比较好的算法和工程的功底，也就是基本的机器学习你要会、相关的领域你要精通、C++和python你也要精通，最好有几篇顶会、或者几个比较好的深度学习项目，这样才算是比较合格的算法工程师。</p>
+</li>
+</ul>
+<p>说回自己哈，我本身是<strong>没有任何顶会</strong>的，只有两篇水文。个人其实不是很喜欢写论文，倒是对<strong>工程落地</strong>比较感兴趣，有几个关于深度学习CV的项目，都需要落地部署。虽然对算法也有研究，但是个人感觉算法和工程应该是4:6开。比较喜欢阅读源码(caffe、Pytorch、tvm、ncnn等)，也参与过其中的一些贡献，个人优势就是工程能力较强。有较强的落地开发经验。对于找工作来说，如果你的论文实力不是很强，有<strong>扎实的工程能力和基础</strong>也是可以的。</p>
+<p>总结一下：</p>
+<ul>
+<li>所以各位找工作一定要确定自己的<strong>特点</strong>，这在找工作过程中<strong>十分重要</strong>。</li>
+<li>当然面试也是有一定的<strong>运气成分</strong>的，说实话，运气还真的很重要很重要，所以说，多投几家，<strong>总会碰上好的面试管</strong>的，遇到好的面试官一定要把握住。</li>
+<li>最<strong>后悔的选择</strong>就是，几乎所有公司都投了算法岗，应该<strong>分一半投开发</strong>的，多试试不同的岗位，机会也会更多一些。</li>
+</ul>
+<h2 id="_3">今年的情况</h2>
+<p>今年的报录比不会很恐怖，但是面试难度可能会<strong>提高一些</strong>。</p>
+<p>但还是那句话，公司需要能<strong>解决问题</strong>的人！</p>
+<p>但是解决问题也没有实际那么简单，需要很<strong>扎实的基础和较强的学习能力</strong>才行。</p>
+<p>在企业不同于在学校，企业要求的不可能是demo级别的玩具，更多的是稳定可靠、精度达到要求且可以上线，缺一不可，看似简单，但实际困难重重。与高校场景完全不同，所以建议大家在高校中尽量多参加一些实际的项目，要有反馈，千万不要自嗨。</p>
+<p>理论知识很重要，项目能力更重要！</p>
+<p>算法和开发对于硕士生来说是差不多的，大部分是做算法开发的工作，除了某些博士算法研究员是真正研究算法的。</p>
+<h1 id="_4">要看的东西</h1>
+<p>算法要看的东西其实并没有开发多，不过数据库和计算机网络的知识需要懂一些，有时候会问一些基本的概念，最好自己用过(例如RPC)。</p>
+<p>但是会问一些<strong>操作系统和并行计算或者分布式</strong>的一些知识，所以这两个部分还是建议看一下的。</p>
+<p>除了最基本的知识点，剩下的就是我们自己简历上的东西。对于算法来说，需要会的语言是C++和Python，当然只会Python也是可以的，但建议两个都会，另外算法需要理解很多机器学习的基础知识以及公式推导，还有自己的项目相关一定要深入理解，项目相关的细节都要弄懂。</p>
+<p>另外有并行编程经验(cuda)也是不错的，不过大部分的算法岗不会问这个，除了一些底层相关的算法岗会问，还有要看一下深度学习框架的源码，要知道其底层执行原理是什么样子的。个人感觉问的最多的依然是caffe、也会问pytorch和TensorFlow源码相关的东西。</p>
+<p>当然还要会一些传统的方法，如果你是CV的话，肯定要熟练使用OPENCV和相关的传统的图像处理方法，例如边缘检测，图像分割方面的传统的一些图像处理的方法。</p>
+<p>最后当然是刷题，个人的水平是leetcode-200道左右，剑指offer刷了好几遍。这个水平应付面试中的算法刚好可以对付的来，但是如果是算法类的笔试，有些大厂的笔试题及其困难，需要1000道左右的题量或者ACM获牌选手才可以轻松应付。所以说刷题是越早越多越好。</p>
+<h1 id="_5">老潘的面经</h1>
+<p>以下是老潘的面经，希望对大家有帮助。</p>
+<h2 id="vivo">VIVO</h2>
+<ul>
+<li>vivo很早提前批投的，笔试很简单，然后去现场面试，一面技术一面HR。</li>
+<li>vivo问的比较水，这里就不列了，简单问了问项目，然后做了一道字符串全排列的题，然后就过了。</li>
+<li>感觉vivo的深度学习算法工程师只是拿别人的方案来直接用，偏工程。</li>
+</ul>
+<h2 id="_6">寒武纪(深度学习平台方案)</h2>
+<p>寒武纪是提前批投的，当时自己比较想搞底层，看了下岗位介绍没有投算法，投的平台方案这个岗位。</p>
+<h3 id="_7">一面</h3>
+<ul>
+<li>C++多线程简介</li>
+<li>C++中的智能指针</li>
+<li>并行和并发的操作</li>
+<li>Openmp用过没有 使用场景</li>
+<li>同步异步</li>
+<li>同步锁</li>
+<li>gihtub上pr的流程</li>
+<li>怎么进行团队合作</li>
+<li>某个项目中的模型是怎么设计的</li>
+</ul>
+<h3 id="_8">二面</h3>
+<ul>
+<li>讲讲项目</li>
+<li>模型怎么设计的</li>
+<li>怎么部署的</li>
+<li>Char占几个字节</li>
+</ul>
+<h3 id="hr">HR面</h3>
+<ul>
+<li>你个人想从事什么样的工作</li>
+<li>目前有几个offer</li>
+<li>我看你有很多比赛，挑几个说说</li>
+<li>你本科到研究生是保研过来的么(答不是..)</li>
+</ul>
+<p>总体感觉不难，面试时间略短，C++问的多。</p>
+<h2 id="cv">科大讯飞(CV算法工程师)</h2>
+<h3 id="_9">一面</h3>
+<ul>
+<li>自我介绍</li>
+<li>挑自己觉得比较重要的项目讲一下</li>
+<li>讲讲你在项目中的重要贡献点，难点，实现了什么</li>
+<li>C++虚函数，多态</li>
+<li>C++智能指针</li>
+<li>设计模式</li>
+<li>nms过程</li>
+<li>卷积操作的具体过程</li>
+<li>卷积操作还有没有优化的空间</li>
+<li>你是如何量化int8的</li>
+<li>讲讲动态规划的思想</li>
+</ul>
+<h3 id="_10">二面</h3>
+<ul>
+<li>讲讲动态规划的思想(科大讯飞比较喜欢问这个)</li>
+<li>编译的原理和过程</li>
+<li>你是怎么贡献开源项目的，贡献了什么</li>
+<li>量化操作的具体过程，写的什么代码</li>
+<li>设计模式</li>
+</ul>
+<p>HR面试没啥就不写了。</p>
+<h2 id="_11">作业帮(视觉算法工程师)</h2>
+<p>作业帮因为有同学在那里实习，说不错，于是我让他帮我内推了。</p>
+<h3 id="_12">一面(一个小时)</h3>
+<ul>
+<li>首先两道算法题(比较简单，不过每个都要分析复杂度，达到最优解)
+1、实现类似split的操作，去掉字符串中的逗号(自己有两个边界条件没有考虑到，面试官一步一步提示写出)
+2、求数组中k个最大的数(一开始使用最大堆，但是复杂度有点高，最后进行改进)</li>
+<li>聊聊项目</li>
+<li>项目中网络的模型为什么这样设计</li>
+<li>为什么要这样改进</li>
+<li>如何剪枝</li>
+<li>数据增强描述一下，有什么要注意的地方</li>
+<li>怎么判断过拟合，如何解决</li>
+<li>BN层怎么具体实现的(问的很具体，举例子说明)</li>
+<li>github贡献开源代码都贡献了些什么</li>
+</ul>
+<h3 id="40">二面(40分钟)</h3>
+<ul>
+<li>一道算法题 大数相乘(没什么可以说的，就是用数组表示每个数，还有进位注意下)</li>
+<li>yolov3中的anchor怎么生成的</li>
+<li>卷积操作的计算量(举个例子具体计算一下)</li>
+<li>为什么要用mobilenetv2，为什么其速度快</li>
+<li>Inception什么样的结构，为什么可以提升性能</li>
+<li>fasterrcnn与ssd的区别(one-stage与two-stage的区别)</li>
+<li>谈谈项目</li>
+<li>说一下项目中的模型如何部署的，用的什么框架，部署了哪些平台</li>
+</ul>
+<h3 id="hr30">HR面(30分钟)</h3>
+<ul>
+<li>你的专业不是纯计算机，为什么想要搞互联网这个行业</li>
+<li>没有考虑国企或者研究所吗</li>
+<li>对奋斗有什么看法</li>
+<li>现在投了哪些公司，有几个offer了</li>
+<li>为什么想来作业帮</li>
+<li>你实习公司的主要业务是什么，介绍一下这家公司</li>
+<li>你觉得实习学到了什么东西</li>
+<li>用过作业帮的产品吗</li>
+<li>对在线教育的看法</li>
+<li>其中有一部分是HR在说作业帮现在的发展情况</li>
+</ul>
+<p>作业帮的面试中规中矩，不是很难也不容易，每一面都有刷题过程，需要一定的刷题量。</p>
+<h2 id="_13">商汤(一二面连着一共两个半小时，算法工程师)</h2>
+<p>虽然当时还没有复习的很好，还是试着投了一下提前批，然后第三天收到了面试通知。</p>
+<h3 id="_14">一面</h3>
+<ul>
+<li>介绍项目</li>
+<li>介绍下mobilenetv1和v2，为什么会快</li>
+<li>可分离卷积，和普通卷积相比，快在哪儿，举个具体维度算一下</li>
+<li>BN层具体介绍一下，给个例子NCHW下对哪个维度进行了运算，预测和推断有什么不一样</li>
+<li>如何利用BN层对卷积层进行剪枝，效果如何</li>
+<li>数据增广用了哪些</li>
+<li>Centernet具体是如何工作的，损失函数</li>
+<li>正负样本你是怎么处理的</li>
+<li>介绍下focal loss</li>
+<li>你模型怎么量化的，量化的具体过程介绍下</li>
+<li>在嵌入式端使用了哪些推断库</li>
+<li>你在实际测试中有没有遇见问题</li>
+</ul>
+<p>算法题：给定n个方块、每个方块的长度不同、重量不同，然后又规则大的方块放小的下头，每个方块上头承受的重量不能超过自身重量的7倍
+问最大可以搭多高，动态规划(建立dp动态转移方程)</p>
+<h3 id="_15">二面</h3>
+<ul>
+<li>你的手势识别项目的数据量有多少</li>
+<li>你对这个项目的贡献是什么</li>
+<li>vector中push_back n个数(n是100w级别) 复杂度多少</li>
+<li>如何设计一个可以快速获得某个范围内数据和(比如一个数组，求索引l到r的数据和)，方法可以用前缀和等</li>
+<li>caffe中的mutable_cpu和gpu中的数据怎么切换的</li>
+<li>你实习期间做了些什么，你实习的公司是做什么的</li>
+<li>空洞卷积做什么什么工作</li>
+<li>感受野怎么计算，举个例子，有个公式</li>
+<li>给你2分钟介绍下自己的优势(这个有挂的趋势)</li>
+</ul>
+<p>算法题：求01矩阵中1的连通数。
+标准的迷宫，一开始用dfs做，面试官说会栈溢出，后来用广搜做。</p>
+<p>HR面忘了。</p>
+<h2 id="_16">猿辅导(深度学习算法)</h2>
+<p>猿辅导风评很好，所以也投了一波。</p>
+<h3 id="_17">一面</h3>
+<p>自己介绍1分钟
+然后就是三道编程题(做出两道，最后一道没做出来)
+第一道：根据n生成完全二叉树
+例如 n=4 生成
+   1
+ 2  3
+4
+的二叉树
+这个生成和层次遍历类似，按照那个思路生成即可，不难</p>
+<p>第二道：能够到达所有房间
+从第一个房间开始，每个房间会有不同房间的钥匙，请问是否能够访问所有的房间
+例如:
+<code>[[1],[2],[3],[0]]</code> 返回true
+<code>[[3],[0],[1],[]]</code> 返回false
+创建一个visited数组代表是否访问过 用dfs挨个遍历即可 不难</p>
+<p>第三道题:
+给2*n个数据(称为第一列和第二列)
+每n个数据从左到右依次变大，第二列的n个数据比第一列对应的n个数据大，而且每个数据都不一样
+例如(n=6):
+1 2 3 4 5 6 
+7 8 9 10 11 12
+求满足这样条件的所有情况
+这道题应该用卡特兰数做。。我没做出来</p>
+<p>然后通知一面过了，等待二面，谁知一等就是1个半月。</p>
+<h2 id="_18">二面三面</h2>
+<p>二面三面合在一起了，一共两个小时
+主要问的是项目，另外问了下TVM和NCNN的区别
+然后是两道题
+第一道是动态规划
+第二题是实现二叉堆的最先优先队列</p>
+<h2 id="_19">云从科技(计算机视觉)</h2>
+<p>云从科技，AI四小龙其中一个，投了试一试。</p>
+<h3 id="50">一面(50分钟，本来是视频面，面试官那边网络不好，改成电话面了)</h3>
+<ul>
+<li>简单自我介绍</li>
+<li>介绍下maskrcnn的结构</li>
+<li>最后怎么实现将maskrcnn部署的，哪些平台</li>
+<li>mobilenetv1和mobilenetv2为什么快</li>
+<li>shufflenet用过没有</li>
+<li>了解vgg、resnet等一些其他的网络么</li>
+<li>如何进行剪枝和量化的</li>
+<li>听说你在移动端有过部署，如果部署的</li>
+<li>C++和python熟悉么，都用过哪些库</li>
+<li>在部署期间不同模型运行速度不一样主要原因在哪儿</li>
+<li>实习做过什么东西</li>
+<li>数据增强代码自己写的吗还是用的什么库，有什么注意点</li>
+<li>最后的项目交付为什么没有用YOLO和Centernet，有什么原因么</li>
+<li>解释下自己如何改进的SSD</li>
+<li>有什么需要问我的么(问了下面试官那边的工作内容，感觉云从各种方向都有，很全)</li>
+</ul>
+<h3 id="70">二面(70分钟)</h3>
+<ul>
+<li>把自己的项目和实习都说了一遍</li>
+<li>大部分都在围绕项目进行描述</li>
+<li>讲如何改进为什么这样设计(这个问的比较多)</li>
+<li>关于项目每个人都不一样所以不多写了</li>
+<li>除了int8，有没有了解过低比特量化</li>
+<li>最后一道简单的编程题 给坐标计算iou </li>
+</ul>
+<h3 id="hr_1">HR面</h3>
+<ul>
+<li>你的专业和计算机没有什么大的关系 </li>
+<li>为什么要搞算法 </li>
+<li>你的意向城市是什么 </li>
+<li>上海这边算法的多一些 杭州主要是硬件 </li>
+<li>为什么不想去北京</li>
+<li>你对云从科技了解吗简单说一说</li>
+<li>你所做的项目中挑一个你觉得贡献最多的讲一下</li>
+<li>你平时的减压方式是什么</li>
+<li>你承受压力的能力可以么</li>
+<li>你平时的业余爱好是什么</li>
+<li>最后我问了一下云从的工作时间(弹性工作，早10晚7？有午餐补助和下午茶还有一些零食)</li>
+</ul>
+<h2 id="_20">大疆(机器学习算法工程师，感觉一面也没问了个什么）</h2>
+<h3 id="35">一面(35分钟)</h3>
+<ul>
+<li>大疆的面试感觉比较简单</li>
+<li>全程都在说自己实习和项目</li>
+<li>模型做了什么改进</li>
+<li>在开源代码(TVM)贡献了什么，具体怎么写的</li>
+<li>分析两个不同框架(ncnn和TVm)的优缺点</li>
+</ul>
+<p>嗯..大疆呢，一面问的100%答上来了，和一面所说的业务也挺匹配，完了当了20天的备胎，还是挂了。</p>
+<h2 id="_21">网易互娱 人工智能研究员</h2>
+<p>自己比较喜欢AI和游戏相结合的岗位，所以投了一波。</p>
+<h3 id="_22">一面</h3>
+<ul>
+<li>首先是自我介绍 </li>
+<li>然后把项目和实习经历都说了一遍(感觉面试官对我的项目不感兴趣 只是听完就行了) </li>
+<li>python中list tuple dict 怎么实现的 原理</li>
+<li>list和tuple怎么互相转换；红黑树的复杂度是多少</li>
+<li>python的内存管理机制是什么；</li>
+<li>c++中的vector与list的区别</li>
+<li>c++的多态怎么实现的；</li>
+<li>ncnn中set_cpu_power()这个函数做什么的</li>
+<li>ncnn中读取模型的方式有哪几种</li>
+<li>new和malloc的区别</li>
+<li>C++中sort实现的原理和底层是什么，如果要自定义排序规则，怎么定义排序函数，有什么需要注意的，如果排序中两个元素相同怎么处理</li>
+<li>最后写一道代码，判断a和b中二进制中不一样的位数</li>
+<li>有什么要问我的</li>
+<li>构造函数和析构函数能不能为虚函数</li>
+</ul>
+<p>网易互娱的话，可能岗位不是很匹配，面试官对我项目完全不感兴趣，主要是问了一堆基础，回答对了90%。
+然后当了20天备胎，收到感谢信。</p>
+<h2 id="_23">阿里</h2>
+<p>阿里投的比较谨慎，投的比较晚，其实现在想想应该早点投的，投的晚了流程都不确定能不能走完。</p>
+<h3 id="_24">一面 晚上八点突然电话</h3>
+<ul>
+<li>简单自我介绍 </li>
+<li>我看你的专业跟你简历上写的项目关系不大</li>
+<li>你主要是在做什么 </li>
+<li>推导一下反向传播BP的过程</li>
+<li>然后举个例子具体推一下怎么更新权重的</li>
+<li>如果更新的数是矩阵反向传播(Jacobian)是怎么来的 </li>
+<li>你的模型都部署了哪些平台 用了哪些优方法 </li>
+<li>你在树莓派上用过哪些推断库 你有比较过吗</li>
+<li>他们的优势是什么 </li>
+<li>做了哪些贡献 </li>
+<li>说明一下你是怎么量化的</li>
+<li>具体步骤讲解一下 </li>
+<li>除了量化还做了什么优化工作 </li>
+<li>具体介绍下</li>
+<li>说一下你的核心优势以及不可替代性 </li>
+<li>你有什么要问我的吗  后续会有工程师和你联系</li>
+</ul>
+<h2 id="_25">二面 一个多小时</h2>
+<ul>
+<li>面试官好像不是怎么懂神经网络</li>
+<li>你的训练图像怎么采集的，需要注意什么，一般是什么格式的图像</li>
+<li>你要实现一个任务，你怎么把它部署到机器人端，说一下流程</li>
+<li>假设有一个图片 128x130 格式是int * 类型的 就是指针指向连续的空间地址，问具体如何操作将其变成128*128的图像 (in-place和非in-place)，比较详细的操作描述一下</li>
+<li>虚函数表具体是怎么实现的，和多态有什么关系</li>
+<li>挑一个你熟悉的设计模式，说一下你是实际中的应用，为什么这样用，有什么优势描述越详细越好</li>
+<li>那么根据你说的这个场景，要实现另一个功能怎么实现(描述比较费时，总之就是和基类、重载、非重载有关)</li>
+<li>一般在代码运行过程中你是如何定位问题的，(答通过编写log类定位，debug，观察一般的输出错误信息)</li>
+<li>假如你跑的代码，偶尔会发生一次bug，log函数不管用，你该怎么找这个错误</li>
+<li>如果你运行的代码过程中遇到了内存泄漏，你也知道，但是你要如何判断是什么使这个内存泄露了，debug看不出来(顺便说一下内存泄漏的概念)</li>
+<li>要你编写一个多线程处理图像的代码，你怎么写，要注意什么(用C11中的库，thread mutex 锁)</li>
+<li>假如你有10台机器分布式处理一项任务，其中有数据流通，其中有一台服务器的数据流动出现问题，如何判断</li>
+<li>你用过什么debug软件 LLDB GDB</li>
+<li>挑一个你比较满意的专利说一下，创新点在哪儿，你的贡献</li>
+</ul>
+<p>阿里问工程偏多问的很细，网上查不到答案那种，还可以，就是每次面试隔半个月...</p>
+<h2 id="_26">华为 人工智能工程师</h2>
+<ul>
+<li>一面 45分钟</li>
+<li>主要问项目，问项目的细节</li>
+<li>最后让C++写了一个roc的评价代码</li>
+<li></li>
+<li>二面 一个小时</li>
+<li>还是问项目，说下为什么这么做，给他说思路</li>
+<li>让写一道顺时针打印矩阵</li>
+<li></li>
+<li>三面(业务主管面) 一个小时</li>
+<li>偏向技术的HR面试</li>
+<li>比如你项目最困难的点，你克服了什么</li>
+<li>对连续半年赶一个项目有什么看法(可能需要经常加班)</li>
+<li>为什么阅读开源代码，学到了什么</li>
+<li>balabala一堆</li>
+</ul>
+<h2 id="_27">海康威视 高性能计算</h2>
+<p>海康威视之前投的算法工程师，然后测评挂了，然后又投了一个AI加速，没想到收到了面试通知。</p>
+<h3 id="_28">一面</h3>
+<ul>
+<li>说一下你的项目</li>
+<li>Cuda会写吗，用什么去提升速度，为什么shared_memory可以提升速度</li>
+<li>TVM增加一个算子你是怎么实现的，问的非常具体</li>
+<li>描述一下compute schedule</li>
+<li>算子融合介绍一下</li>
+<li>介绍下TVM</li>
+</ul>
+<h3 id="_29">二面</h3>
+<ul>
+<li>因为自己没有什么压力(知道自己和这个岗位不是很匹配，本着学习的心态去的)，主要是和面试官聊一下自己的东西</li>
+<li>用过什么设计模式，描述使用的场景</li>
+<li>单例模式的缺点是什么</li>
+<li>既然单例模式中的</li>
+<li>根据更像业务面</li>
+</ul>
+<h2 id="bigo-ai">Bigo AI视觉算法工程师</h2>
+<p>Bigo看到这个岗位和自己非常匹配，马上投了，笔试比较简单。</p>
+<h3 id="40_1">一面 40分钟</h3>
+<ul>
+<li>自我介绍一下</li>
+<li>介绍下项目</li>
+<li>模型如何剪枝的</li>
+<li>量化策略是什么，步骤</li>
+<li>讲一下算子融合和图优化，举个例子</li>
+<li>动态图和静态图</li>
+<li>比较一下Ncnn和TVM的优缺点</li>
+<li>你以前用过django？讲一下wsgi</li>
+<li>Python多线程怎么调用</li>
+<li>线程锁，要注意什么</li>
+<li>C++结构体(一个int一个char一个int 占多少字节 就是字节对齐)</li>
+<li>怎么判断大小端，写代码判断</li>
+<li>动态库和静态库的区别</li>
+<li>Linux下动态链接库的默认地址在哪儿，怎么设置自定义地址</li>
+<li>Cmake如果链接动态库和静态库怎么写</li>
+<li>Linux下一个文件没有后缀 有两个应用程序去调用 怎么设标记让正确的应用程序调用 #</li>
+<li>Linux下怎么创建一个.sh文件去移动一个文件夹中的所有.jpg文件到另一个文件夹</li>
+<li>守护进程怎么创建，两个fork</li>
+<li>用户态和内核态</li>
+<li>git rebase和merge的区别</li>
+</ul>
+<p>和一面聊得很开心，99%的问题回答出来了，一面也说我通过了，不过可能因为一些选择面试地点的原因，迟迟轮不上现场面的安排，现在来看，可能轮到我的时候hc都没了。</p>
+<h3 id="1">二面 1个小时</h3>
+<p>二面太晚了，没有面试的激情了。
+- 主要是问项目，问自己项目中backbone和检测的主要框架中是如何改进的
+- 如果遇到漏检情况是什么原因导致的，如何处理
+- 卷积操作如何提速，举例一下所有的方法
+- 聊了下自己写的论文的思路
+- 聊了下实习的项目
+- 面试官挺好，然后无意吐槽今年他们公司报算法的人数是去年的4、5倍。</p>
+<p>三面那会太晚了，就推了</p>
+<h2 id="_30">奥比中光</h2>
+<p>奥比中光这个公司无意中报了，然后面了两面+HR面，主要也是聊自己的项目。
+最后因为地点原因不打算去。</p>
+<h2 id="_31">驭势科技</h2>
+<p>这个公司面了一面，聊了下算法加速的过程，量化、剪枝、TVM、NCNN等。
+聊得挺好，不过有点太晚了。</p>
+<h2 id="_32">陌陌</h2>
+<p>陌陌对于我来说，是一个有缘无分的公司。
+实习的时候技术面通过了，然后HR面因为说错话被挂。
+所以秋招特别想要再试试，虽然简历在锁定期(实习投过)，不过还是找人帮忙递了下简历。然后等了好久，陌陌在西安现场有面试，通知我去面试。去了做了三道题(写出来了)，然后把我叫出来，跟我说了一堆好话，大意就是你很优秀，但是岗位不匹配，不好意思让我走了。</p>
+<h2 id="_33">百度</h2>
+<p>还有最近几天面的百度，不过不是算法岗，是偏底层的，虽然和面试官聊得挺high，但感觉岗位不是很匹配，所以希望也不大。百度的面试官都很有素养，会让你白纸写你算法中某一个过程，越详细越好。</p>
+<h1 id="2021">2021年，新的总结</h1>
+<p>其实只是想发发面经，没想到又扯了这么多...</p>
+<p>对于算法岗好坏，无需多言。如果是真的热爱，抛开一切学就对了！</p>
+<p>如果有对算法岗找工作相关的问题可以直接留言，欢迎来撩。</p>
+<p>PS：最近准备弄一个人工智能相关的小站，收集大量的知识资料<strong>方便大家查阅学习</strong>：</p>
+<p><img alt="进击的人工智能" src="http://image.oldpan.me/%E8%BF%9B%E5%87%BB%E7%9A%84%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD.png" /></p>
+<p>大概的总纲是：</p>
+<ul>
+<li>理论基础知识预备</li>
+<li>深度学习环境配置</li>
+<li>模型训练与设计</li>
+<li>模型部署与调优</li>
+<li>有意思且有深度的AI项目</li>
+<li>提升效率的工具</li>
+</ul>
+<p>刚搭起来，正在添加内容ing。</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../%28%E5%BF%85%E7%9C%8B%29%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0CV%E4%BA%BA%E6%89%8D%E6%8A%A5%E5%91%8A/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              (必看)深度学习CV人才报告
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../../%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E4%B8%8E%E8%AE%BE%E8%AE%A1/%28%E4%B8%80%29%20%E6%95%B0%E6%8D%AE%E5%BE%88%E9%87%8D%E8%A6%81/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              (一) 数据很重要
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+    
+  </body>
+</html>
